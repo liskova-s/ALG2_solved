@@ -13,6 +13,9 @@ public class Fraction {
 
     public Fraction(double num, double denom) {         //converting numerator and denominator into integer form
         boolean end = false;
+        if(denom==0){
+            throw new IllegalArgumentException("Denominator equals 0");
+        }
         while (!end) {
             if ((num * 10) % 10 == 0 && (denom * 10) % 10 == 0) {
                 this.num = (int) num;
