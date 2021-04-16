@@ -29,25 +29,30 @@ public class BankApp {
         Svecova.estabAccount(1200);
         Skoda.estabAccount(120);
 
-        for (Client x : clients) {
-            System.out.format("%s: %.2f %s %n", x.adressClient(), x.getTotalResidual(), x.currency);
-        }
+        printList(clients);
 
+        System.out.println("___________________________________");
+        System.out.println("Disposal-sorted (using Comparable):");
+        Collections.sort(clients);
+        printList(clients);
+        
+        /*
         System.out.println("___________________________________");
         System.out.println("Disposal-sorted (using CashComparator):");
         Collections.sort(clients, Client.CashComparator);
-        for (Client x : clients) {
-            System.out.format("%s: %.2f %s %n", x.adressClient(), x.getTotalResidual(), x.currency);
-        }
+        printList(clients);
+         */
 
         System.out.println("___________________________________");
         System.out.println("Name-sorted (using Namecomparator):");
-
         Collections.sort(clients, Client.NameComparator);
-        for (Client x : clients) {
-            System.out.format("%s: %.2f %s %n", x.adressClient(), x.getTotalResidual(), x.currency);
-        }
+        printList(clients);
 
     }
 
+    public static void printList(ArrayList<Client> clients) {
+        for (Client x : clients) {
+            System.out.format("%s: %.2f %s %n", x.adressClient(), x.getTotalResidual(), x.currency);
+        }
+    }
 }

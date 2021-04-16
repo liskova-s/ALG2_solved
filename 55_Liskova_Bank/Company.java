@@ -44,4 +44,9 @@ public class Company extends Client {
     public String getName() {
         return name;
     }
+
+    @Override
+    public int compareTo(Client c) {
+        return Double.compare(this.getTotalResidual(), c.getTotalResidual());
+    }
 }

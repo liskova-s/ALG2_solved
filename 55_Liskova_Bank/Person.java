@@ -61,4 +61,9 @@ public class Person extends Client {
         return name;
     }
 
+    @Override
+    public int compareTo(Client c) {
+        return Double.compare(this.getTotalResidual(), c.getTotalResidual());
+    }
+
 }
