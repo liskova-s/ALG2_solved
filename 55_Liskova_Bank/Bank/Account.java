@@ -11,20 +11,24 @@ package bank;
  */
 public class Account {
     private double cash=0;
-    private String currency;
-    Account(){
+    private String currency="CZK";
+    public Account(){
         
     }
-    Account(double cash, String currency){
+    public Account(double cash){
         this.cash=cash;
-        this.currency=currency;
     }
     
     public void insertMoney(double cash){
         this.cash+=cash;
     }
-    public void getMoney(double cash){
-        this.cash-=cash;
+    public boolean getMoney(double cash){
+        if (this.cash>=cash){
+            this.cash-=cash;
+            return true;
+        }else{
+            return false;
+        }
     }
     public double getResidue(){
         return cash;
