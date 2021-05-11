@@ -1,0 +1,6 @@
+Runner{firstname=Alice, lastname=Mala, sex=F, born=1999-03-21, club=Silvini, nationality=CZE, bib=0}
+Runner{firstname=Filip, lastname=Stredny, sex=M, born=2000-04-12, club=SK Praha, nationality=CZE, bib=0}
+Runner{firstname=Michal, lastname=Velky, sex=M, born=1999-03-24, club=Sk Oslo, nationality= NOR, bib=0}
+Runner{firstname=Alice, lastname=Mala, sex=F, born=1999-03-21, club=Silvini, nationality=CZE, bib=0}
+Runner{firstname=Filip, lastname=Stredny, sex=M, born=2000-04-12, club=SK Praha, nationality=CZE, bib=0}
+Runner{firstname=Michal, lastname=Velky, sex=M, born=1999-03-24, club=Sk Oslo, nationality= NOR, bib=0}
