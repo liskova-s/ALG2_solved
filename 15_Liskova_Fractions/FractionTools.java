@@ -11,49 +11,35 @@ package Fraction;
  */
 public class FractionTools {
 
-    public static int[] sum(Fraction a, Fraction b) {
+    public static Fraction sum(Fraction a, Fraction b) {
         int numC = a.getNumerator() * b.getDenominator() + b.getNumerator() * a.getDenominator();
         int denomC = a.getDenominator() * b.getDenominator();
         Fraction c = new Fraction(numC, denomC);
-        return c.getSimplestFraction();
+        c.simplify();
+        return c;
     }
 
-    public static int[] antisum(Fraction a, Fraction b) {
+    public static Fraction antisum(Fraction a, Fraction b) {
         int numC = a.getNumerator() * b.getDenominator() - b.getNumerator() * a.getDenominator();
         int denomC = a.getDenominator() * b.getDenominator();
         Fraction c = new Fraction(numC, denomC);
-        return c.getSimplestFraction();
+        c.simplify();
+        return c;
     }
 
-    public static int[] multiply(Fraction a, Fraction b) {
+    public static Fraction multiply(Fraction a, Fraction b) {
         int numC = a.getNumerator() * b.getNumerator();
         int denomC = a.getDenominator() * b.getDenominator();
         Fraction c = new Fraction(numC, denomC);
-        return c.getSimplestFraction();
+        c.simplify();
+        return c;
     }
 
-    public static int [] divide(Fraction a, Fraction b) {
+    public static Fraction divide(Fraction a, Fraction b) {
         int numC = a.getNumerator() * b.getDenominator();
         int denomC = a.getDenominator() * b.getNumerator();
         Fraction c = new Fraction(numC, denomC);
-        return c.getSimplestFraction();
+        c.simplify();
+        return c;
     }
-    public static int getNumeratorFromArray(int [] array){
-        return array[0];
-    }
-
-    public static int getDenominatorFromArray(int [] array){
-        return array[1];
-    }
-
-    public static String stringInterpret(int a, int b){
-        if(a==0){
-            return 0+"";
-        }
-        if(a==b && a==1){
-            return 1+"";
-        }
-        return a+"/"+b;
-    }
-
 }
