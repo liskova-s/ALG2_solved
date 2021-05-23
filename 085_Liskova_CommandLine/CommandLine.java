@@ -113,6 +113,8 @@ public class CommandLine {
                     return "ERR: Can not operate without filename.";
                 }
                 return delete(parsed[1]);
+            case "-map":
+                return map();
             default:
                 return "Invalid input";
         }
@@ -144,6 +146,7 @@ public class CommandLine {
                 + "-mkdir <dir_name>        creates a new directory <dir_name>\n"
                 + "-mkdirs <path>           creates directories specified in <path>\n"
                 + "-rename <nm1> <nm2>      renames file or directory <nm1> to <nm2>\n"
+                + "-map                     shows directory map - startpoint: current directory\n"
                 + "-del <filename>          delete file <filename>\n");
 
     }
@@ -227,6 +230,42 @@ public class CommandLine {
         } else {
             return "File not found.";
         }
+    }
+
+    private String map() {
+        StringBuilder sb = new StringBuilder();
+        // File object
+        File dir = new File(actualDir.getAbsolutePath());
+
+        File arr[] = dir.listFiles();
+
+        sb.append(dir.getName());
+        sb.append(System.getProperty("line.separator"));
+
+        sb.append(recursiveSearch(arr, 0));
+        return sb.toString();
+    }
+
+    private StringBuilder recursiveSearch(File[] arr, int level) {
+        StringBuilder sb = new StringBuilder();
+        //main dir files
+        for (File f : arr) {
+            // tabs
+            for (int i = 0; i <= level; i++) {
+                sb.append("\t");
+            }
+            if (f.isFile()) {
+                sb.append(f.getName());
+                sb.append(System.getProperty("line.separator"));
+            } else if (f.isDirectory()) {
+                sb.append("[").append(f.getName()).append("]");
+                sb.append(System.getProperty("line.separator"));
+
+                // sub-dirs
+                sb.append(recursiveSearch(f.listFiles(), level + 1));
+            }
+        }
+        return sb;
     }
 
     private String delete(String filename) {
