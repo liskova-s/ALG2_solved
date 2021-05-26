@@ -16,7 +16,7 @@ import java.util.Properties;
  */
 public class CommandLine {
 
-    private File homeDir;
+    private final File homeDir;
     private File actualDir;
     private boolean endtrue = false;
 
@@ -54,13 +54,13 @@ public class CommandLine {
             return arrayToStringFolderFile(subFoldersFiles);
         } else {
             if (parts[1].equals("-e")) {//dir -e .txt
-                String[] subFoldersFiles = actualDir.list(new ExtensionFilter(parts[1]));//filtruje soubory s koncovkou .txt
+                String[] subFoldersFiles = actualDir.list(new ExtensionFilter(parts[1]));//filtruje soubory s koncovkou .txt 
                 return Arrays.toString(subFoldersFiles);
             }
             return null;
         }
-    }
-     */
+    }*/
+
     public String parseAndExecute(String command) throws IOException {
         String[] parsed = command.trim().split(" ");
         switch (parsed[0]) {
@@ -77,11 +77,14 @@ public class CommandLine {
                 if (parsed.length < 2) {
                     return dir();
                 }
+                if (parsed[1].equals("-e") && parsed.length > 2) {
+                    return dire(parsed[2]);
+                }
                 return dir(parsed[1]);
             case "-exit":
                 endtrue = true;
                 break;
-            case "-e":
+            case "-ex":
                 endtrue = true;
                 break;
             case "-cd":
@@ -137,7 +140,7 @@ public class CommandLine {
     private String help() {
         return ("HELP\n"
                 + "-h   -help               show this help message\n"
-                + "-e   -exit               exit command line\n"
+                + "-ex   -exit               exit command line\n"
                 + "-dir                     returns list of content in current directory\n"
                 + "-dir <dir_name>          returns list of content in <dir_name> directory\n"
                 + "-cd <directory>          change directory: enter <directory> \n"
@@ -170,6 +173,15 @@ public class CommandLine {
         } else {
             return "No such directory found.";
         }
+        for (String line : contentList) {
+            sb.append(line).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String dire(String extension) {
+        String[] contentList = actualDir.list(new ExtensionFilter(extension));
+        StringBuilder sb = new StringBuilder();
         for (String line : contentList) {
             sb.append(line).append("\n");
         }
@@ -250,7 +262,7 @@ public class CommandLine {
         StringBuilder sb = new StringBuilder();
         //main dir files
         for (File f : arr) {
-            // tabs
+            // tabs 
             for (int i = 0; i <= level; i++) {
                 sb.append("\t");
             }
